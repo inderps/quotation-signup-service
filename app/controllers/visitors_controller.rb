@@ -3,9 +3,10 @@ class VisitorsController < ApplicationController
     visitor = Visitor.find_by_identifier(params[:identifier])
     if visitor.present?
       visitor.visit_count = visitor.visit_count + 1
+      visitor.visit_time = Time.now
       visitor.save
     else
-      visitor = Visitor.create(identifier: params[:identifier], visit_count: 1)
+      visitor = Visitor.create(identifier: params[:identifier], visit_count: 1, visit_time: Time.now)
     end
 
     render json: { visitor: visitor }
@@ -17,10 +18,10 @@ class VisitorsController < ApplicationController
   end
 
   def signup
-    visitor = Visitor.find_by_identifier(identifier: params[:identifier])
+    visitor = Visitor.find_by_identifier(params[:identifier])
     visitor.email = params[:email]
     visitor.visit_time = Time.now
     visitor.save
-
+    render json: { visitor: visitor }
   end
 end
