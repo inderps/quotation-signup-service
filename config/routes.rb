@@ -1,5 +1,6 @@
 QuotationSignupService::Application.routes.draw do
-  resources :visitors
+  get 'visitors/create'
+  get 'visitors/index'
   post 'visitors/signup'
 
   # The priority is based upon order of creation:
