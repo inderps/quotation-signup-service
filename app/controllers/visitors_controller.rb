@@ -9,7 +9,7 @@ class VisitorsController < ApplicationController
       visitor = Visitor.create(identifier: params[:identifier], visit_count: 1, visit_time: Time.now)
     end
 
-    render json: { visitor: visitor }
+    render js: ""
   end
 
   def index
@@ -22,6 +22,6 @@ class VisitorsController < ApplicationController
     visitor.email = params[:email]
     visitor.visit_time = Time.now
     visitor.save
-    render json: { visitor: visitor }
+    redirect_to "http://inderps.github.io/quotation-maker/thankyou.html"
   end
 end
