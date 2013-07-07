@@ -22,6 +22,8 @@ class VisitorsController < ApplicationController
     visitor.email = params[:email]
     visitor.visit_time = Time.now
     visitor.save
-    redirect_to "http://inderps.github.io/quotation-maker/thankyou.html"
+    redirect_url = "http://inderps.github.io/quotation-maker/thankyou.html"
+    redirect_url = "http://localhost:8000/thankyou.html" if Rails.env == "development"
+    redirect_to redirect_url
   end
 end
